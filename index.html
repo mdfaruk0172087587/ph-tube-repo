@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PH Tube</title>
+    <!-- daisy ui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .inter {
+            font-family: "Inter", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+    </style>
 </head>
-<body>
-    
+
+<body class="inter w-11/12 mx-auto">
+    <!-- nav section -->
+    <nav class="flex justify-between items-center py-5 border-b-2 border-[#17171720]">
+        <div>
+            <img  src="asst/Logo.png" alt="">
+        </div>
+        <div>
+            <button class="btn">sort by view</button>
+        </div>
+        <div>
+            <button class="btn bg-red-600">Blog</button>
+        </div>
+    </nav>
+    <!-- btn section -->
+     <nav id="btn-container" class="py-5 flex gap-2 justify-center items-center">
+        <button class="btn btn-sm bg-red-600 text-white">All</button>
+        
+     </nav>
+
+     <script src="script/script.js"></script>
 </body>
+
 </html>
