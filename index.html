@@ -43,21 +43,24 @@
     </nav>
     <!-- btn section -->
      <nav id="btn-container" class="py-5 flex gap-2 justify-center items-center">
-        <button onclick="videosLade()" class="btn btn-sm bg-red-600 text-white">All</button>
+        <button id="btn-all" onclick="videosLade()" class="btn btn-sm hover:bg-red-600 hover:text-white">All</button>
         
      </nav>
 
      <!-- card section -->
       <section id="card-section-container" class="py-5 grid grid-cols-4 gap-3">
-       
+       <!-- text div -->
+        <div class="flex flex-col justify-center items-center col-span-full py-20">
+            <img src="asst/Icon.png" alt="">
+            <p class="text-2xl font-semibold">Oops!! Sorry, There is no content here</p>
+        </div>
       </section>
 
       <!-- Open the modal using ID.showModal() method -->
 <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
 <dialog id="view_modal" class="modal">
   <div class="modal-box">
-    <h3 class="text-lg font-bold">Hello!</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div id="modal-details-container"></div>
     <div class="modal-action">
       <form method="dialog">
         <!-- if there is a button in form, it will close the modal -->

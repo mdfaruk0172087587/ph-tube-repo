@@ -12,7 +12,7 @@ const buttonsCategories = (button) => {
     // console.log(btn)
     const btnDiv = document.createElement('div');
     btnDiv.innerHTML = `
-    <button onclick="buttonVideos(${btn.category_id})" class="btn btn-sm hover:bg-red-600 hover:text-white ">${btn.category}</button>
+    <button id="btn-${btn.category_id}" onclick="buttonVideos(${btn.category_id})" class="btn btn-sm hover:bg-red-600 hover:text-white ">${btn.category}</button>
     `;
     btnContainer.appendChild(btnDiv);
   })
@@ -21,13 +21,25 @@ const buttonsCategories = (button) => {
 const videosLade = async () => {
   const response = await fetch('https://openapi.programming-hero.com/api/phero-tube/videos');
   const data = await response.json();
-  videosLadeFunction(data.videos)
+  videosLadeFunction(data.videos);
+  removeActiveClass();
+  document.getElementById('btn-all').classList.add('active');
+
 }
 
 // video  lade kor e  display te
 const videosLadeFunction = (videos) => {
   const cardSectionContainer = document.getElementById('card-section-container');
     cardSectionContainer.innerHTML = "";
+    if(videos.length == 0){
+      cardSectionContainer.innerHTML=`
+       <div class="flex flex-col justify-center items-center col-span-full py-20">
+            <img src="asst/Icon.png" alt="">
+            <p class="text-2xl font-semibold">Oops!! Sorry, There is no content here</p>
+        </div>
+      `
+      return;
+    }
   videos.forEach(video => {
     // console.log(video)
     
@@ -56,7 +68,7 @@ const videosLadeFunction = (videos) => {
                </div>
               
             </div>
-            <button class="btn btn-block">View Details</button>
+            <button onclick="viewDetailsModal('${video.video_id}')" class="btn btn-block">View Details</button>
           </div>
     `;
     cardSectionContainer.appendChild(videoDiv)
@@ -67,5 +79,42 @@ const videosLadeFunction = (videos) => {
 const buttonVideos = async (id) => {
   const response = await fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`);
   const data = await response.json();
-  videosLadeFunction(data.category)
+  videosLadeFunction(data.category);
+  removeActiveClass();
+  const clickBtn = document.getElementById(`btn-${id}`)
+  clickBtn.classList.add('active');
+}
+
+// remove active class 
+const removeActiveClass = () =>{
+  const activeButton = document.getElementsByClassName('active');
+ for(const btn of activeButton){
+  btn.classList.remove('active')
+ }
+}
+// view details modal
+const viewDetailsModal =async (videoID) =>{
+const response =await  fetch(`https://openapi.programming-hero.com/api/phero-tube/video/${videoID}`);
+const data = await response.json();
+displayViewDetails(data.video);
+}
+
+// display view details
+const displayViewDetails = (video) =>{
+  
+document.getElementById('view_modal').showModal();
+const modalDetailsContainer = document.getElementById('modal-details-container');
+modalDetailsContainer.innerHTML=`
+<div class="card bg-base-100 image-full w-96 shadow-sm">
+  <figure>
+    <img class="object-cover"
+      src="${video.thumbnail}" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">${video.title}</h2>
+    <p>${video.description}</p>
+    
+  </div>
+</div>
+`
 }
