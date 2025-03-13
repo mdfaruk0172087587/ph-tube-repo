@@ -21,6 +21,10 @@
             font-optical-sizing: auto;
             font-style: normal;
         }
+        .active{
+            background-color: blue;
+            color: white;
+        }
     </style>
 </head>
 
@@ -39,9 +43,29 @@
     </nav>
     <!-- btn section -->
      <nav id="btn-container" class="py-5 flex gap-2 justify-center items-center">
-        <button class="btn btn-sm bg-red-600 text-white">All</button>
+        <button onclick="videosLade()" class="btn btn-sm bg-red-600 text-white">All</button>
         
      </nav>
+
+     <!-- card section -->
+      <section id="card-section-container" class="py-5 grid grid-cols-4 gap-3">
+       
+      </section>
+
+      <!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+<dialog id="view_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
 
      <script src="script/script.js"></script>
 </body>
